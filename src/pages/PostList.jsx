@@ -1,15 +1,30 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const PostList = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    
+    axios.get('http://localhost:3000/api/posts')
+      .then(response => setPosts(response.data));
+  }, []);
+
   return (
-    <>
-      <h2>Lista dei post</h2>
+    <div>
+      <h2>Lista dei Post</h2>
       <ul>
-        <li><Link to="/post/1">Post 1</Link></li>
-        <li><Link to="/post/2">Post 2</Link></li>
-        <li><Link to="/post/3">Post 3</Link></li>
+        {posts.map(post => (
+          <li key={post.id}>
+            <h3>{post.title}</h3>
+            <Link to={`/post/${post.id}`}>
+              <button>Vai al Dettaglio</button>
+            </Link>
+          </li>
+        ))}
       </ul>
-    </>
+    </div>
   );
 };
 

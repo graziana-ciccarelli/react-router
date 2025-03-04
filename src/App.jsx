@@ -4,6 +4,7 @@ import ChiSiamo from "./pages/ChiSiamo";
 import PostList from "./pages/PostList";
 import Navbar from "./components/NavBar";
 import PostDetail from "./pages/PostDetail";
+
 function App() {
   return (
     <BrowserRouter>
